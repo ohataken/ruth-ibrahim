@@ -3,9 +3,15 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
+
+enum {
+    SAVE,
+    LOAD,
+};
 
 struct command {
-    char name[4];
+    int name;
     int index;
     int value;
 };

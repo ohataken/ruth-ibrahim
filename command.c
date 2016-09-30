@@ -19,17 +19,26 @@ void consume_whitespace() {
 }
 
 void read_command_name(struct command *command) {
+    char buffer[8] = {0};
     int offset = 0;
 
     while (1) {
         char c = peekchar();
 
         if (isalpha(c)) {
-            command->name[offset++] = c;
+            buffer[offset++] = c;
             getchar();
         } else {
             break;
         }
+    }
+
+    if (strcmp(buffer, "save") == 0) {
+        command->name = SAVE;
+    } else if (strcmp(buffer, "load") == 0) {
+        command->name = LOAD;
+    } else {
+        perror("unexpected command name\n");
     }
 }
 
