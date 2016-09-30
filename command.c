@@ -72,9 +72,13 @@ struct command read_command() {
 
     read_command_name(&command);
     consume_whitespace();
+
     read_command_index(&command);
-    consume_whitespace();
-    read_command_value(&command);
+
+    if (command.name == SAVE) {
+        consume_whitespace();
+        read_command_value(&command);
+    }
 
     return command;
 }
